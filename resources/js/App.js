@@ -9,6 +9,7 @@ import Dashboard from './containers/Dashboard/Dashboard';
 import Menu from './containers/Menu/Menu';
 import Orders from './containers/Orders/Orders';
 import Checkout from './containers/Checkout/Checkout';
+import PrivateRoute from './containers/PrivateRoute/PrivateRoute';
 import Logout from './containers/Auth/Logout/Logout';
 import * as actions from './store/actions/index';
 
@@ -20,28 +21,21 @@ class App extends React.Component {
         let routes = (
             <Switch>
                 <Route path="/login" component={Auth}/>
-                <Route path="/dashboard" component={Menu}/>
-                <Route path="/menu" component={Menu}/>
+                <Route path="/logout" component={Logout}/>
+                <Route path="/dashboard" component={Dashboard}/>
+                {/*<Route path="/menu" component={Menu}/>*/}
                 <Route path="/orders" component={Orders}/>
                 <Route path="/checkout" component={Checkout}/>
-                <Route path="/" exact component={Auth}/>
+                <PrivateRoute path='/menu' component={Menu} />
+                <PrivateRoute path='/' component={Menu} />
+                {/*<Route path="/menu" render={() =>(*/}
+                {/*    this.props.isAuthenticated ? ( <Route component={Menu} />)*/}
+                {/*        : (<Route component={Dashboard} />)*/}
+                )} />
 
             </Switch>
         );
-        if (this.props.isAuthenticated) {
-            routes = (
-                <Switch>
-                    <Route path="/login" component={Auth}/>
-                    <Route path="/logout" component={Logout}/>
-                    <Route path="/dashboard" component={Dashboard}/>
-                    <Route path="/menu" component={Menu}/>
-                    <Route path="/orders" component={Orders}/>
-                    <Route path="/checkout" component={Checkout}/>
-                    <Route path="/" exact component={Dashboard}/>
 
-                </Switch>
-            );
-        }
         return (
             <div>
                 <Layout>
