@@ -117,7 +117,6 @@ class Auth extends React.Component {
                     <Button btnType="Success">SUBMIT</Button>
                 </form>
             </div>
-
         );
     }
 }

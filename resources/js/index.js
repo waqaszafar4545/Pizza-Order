@@ -9,11 +9,15 @@ import './index.css';
 import App from './App';
 //import registerServiceWorker from './registerServiceWorker';
 import authReducer from './store/reducers/auth';
+import itemsReducer from './store/reducers/items';
+import orderReducer from './store/reducers/order';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-    auth: authReducer
+    auth: authReducer,
+    items: itemsReducer,
+    order: orderReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(
