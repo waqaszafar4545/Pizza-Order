@@ -9,6 +9,9 @@ const orderItem = (props) => (
             <span className="price">${props.price.toFixed(2)}</span>
         </td>
         <td className="">
+            <span className="price">${props.totalPrice.toFixed(2)}</span>
+        </td>
+        <td className="">
             <div className="qty-btn d-flex ">
                 <span>
                     <button onClick={props.decreased} disabled={props.quantity == 0}>

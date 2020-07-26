@@ -9,6 +9,7 @@ const OrderItems = (props) => {
             <OrderItem key={props.orderItems[orderItemKey].id}
                        name={props.orderItems[orderItemKey].name} price={props.orderItems[orderItemKey].price}
                        quantity={props.orderItems[orderItemKey].quantity}
+                       totalPrice={props.orderItems[orderItemKey].totalPrice}
                        increased={() => props.quantityIncreased(orderItemKey)}
                        decreased={() => props.quantityDecreased(orderItemKey)}>
             </OrderItem>
@@ -20,6 +21,14 @@ const OrderItems = (props) => {
                 <div className="row justify-content-center">
                     <div className="d-flex ">
                         <table className="table table-responsive">
+                            <thead>
+                            <tr>
+                                <td>Name</td>
+                                <td>Price</td>
+                                <td>Total Price</td>
+                                <td>Quantity</td>
+                            </tr>
+                            </thead>
                             <tbody>
                             {orderItemsHtml}
                             </tbody>

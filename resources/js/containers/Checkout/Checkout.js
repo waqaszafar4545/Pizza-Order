@@ -5,26 +5,23 @@ import Button from '../../components/UI/Button/Button';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import * as actions from '../../store/actions';
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
-import CheckoutItems from './CheckoutItems/CheckoutItems';
 import {NavLink} from "react-router-dom";
+import ContactData from "./ContactData/ContactData";
 
 class Checkout extends Component {
-    checkoutHandler = () => {
-        //this.props.history.push('/dashboard');
-        //this.props.history.goBack();
-        console.log('Checkout');
-        this.props.history.push('/checkout');
+    componentDidMount() {
+        console.log(this.props.cartItems, "orders componentDidMount");
+        if (!this.props.cartItems) {
+            this.props.history.push('/menu');
+        }
     }
+
     loginHandler = () => {
-        console.log('login')
-        //this.props.history.push('/dashboard');
-        //this.props.history.goBack();
+        console.log('login');
         this.props.history.push('/login');
     }
     logoutHandler = () => {
-        console.log('logout')
-        //this.props.history.push('/dashboard');
-        //this.props.history.goBack();
+        console.log('logout');
         this.props.history.push('/logout');
     }
 
@@ -35,7 +32,7 @@ class Checkout extends Component {
                     <div className="container">
                         <div className="row justify-content-center mb-5 pb-3 mt-5 pt-5">
                             <div className="col-md-7 heading-section text-center">
-                                <h2 className="mb-4">Chechkout</h2>
+                                <h2 className="mb-4">Checkout</h2>
                                 <p className="flip">
                                     <span className="deg1"></span><span className="deg2"></span><span
                                     className="deg3"></span></p>
@@ -43,8 +40,14 @@ class Checkout extends Component {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-md-8">
-                            <CheckoutItems></CheckoutItems>
+                        <div className="col-md-12">
+                            <div className="container-fluid">
+                                <div className="row justify-content-center">
+                                    <div className="d-flex checkout-form-cls">
+                                    <ContactData></ContactData>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -58,7 +61,8 @@ const mapStateToProps = state => {
         loading: state.auth.loading,
         error: state.auth.error,
         isAuthenticated: state.auth.token !== null,
-        authRedirectPath: state.auth.authRedirectPath
+        authRedirectPath: state.auth.authRedirectPath,
+        cartItems: state.items.cartItems
     };
 };
 const mapDispatchToProps = dispatch => {

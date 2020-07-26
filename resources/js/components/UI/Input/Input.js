@@ -2,10 +2,14 @@ import React from 'react';
 
 import './Input.css';
 import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
+import MaskedInput from 'react-text-mask'
 
+const normalizePhoneNumber = (value) => {
+    return value.replace(/\s/g,"").match(/.{1,4}/g).join(" ").substr(0,19) || "";
+}
 const input = (props) => {
     let inputElement = null;
-    const inputClasses = ["form-control","input-text-cls"];
+    const inputClasses = ["form-control", "input-text-cls"];
     let LabelClasses = null;
     if (props.labelClassName) {
         LabelClasses = [...props.labelClassName];
@@ -14,8 +18,15 @@ const input = (props) => {
     if (props.invalid && props.shouldValidate && props.touched) {
         inputClasses.push("Invalid");
     }
-
     switch (props.elementType) {
+        case ('input_phone'):
+            inputElement = <MaskedInput
+                mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                className={inputClasses.join(' ')}
+                {...props.elementConfig}
+                value={props.value}
+                onChange={props.changed}            />;
+            break;
         case ('input'):
             inputElement = <input
                 className={inputClasses.join(' ')}

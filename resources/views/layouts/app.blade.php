@@ -53,5 +53,7 @@
 <script src="{{ asset('assets/js/aos.js') }}"></script>
 <script src="{{ asset('assets/js/scrollax.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('https://unpkg.com/jquery-input-mask-phone-number@1.0.11/dist/jquery-input-mask-phone-number.js') }}"></script>
+<script src="{{ asset('assets/js/custom.js') }}"></script>
 </body>
 </html>

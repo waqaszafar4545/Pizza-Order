@@ -2,3 +2,11 @@
     padding: 0 10px;
     border-radius: 20px;
 }
+.checkout-form-cls{
+
+    /*background-color: #b18d4d;*/
+    /* text-align: center; */
+    justify-content: center;
+    padding: 50px;
+    margin-bottom: 50px;
+}

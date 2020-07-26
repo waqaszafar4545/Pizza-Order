@@ -10,19 +10,19 @@ import OrderInvoiceSummary from './OrderInvoiceSummary/OrderInvoiceSummary';
 import {NavLink} from "react-router-dom";
 import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-
 class Orders extends Component {
     componentDidMount() {
-        console.log(this.props.cartItems,"orders componentDidMount");
-        if(!this.props.cartItems){
+        console.log(this.props.cartItems, "orders componentDidMount");
+        if (!this.props.cartItems) {
             this.props.history.push('/menu');
         }
     }
 
     updateOrderInvoiceSummary(items) {
-        let orderInvoiceSummary = 0;
+        let orderInvoiceSummary = null;
+        let subTotal = 0;
         if (items) {
-            orderInvoiceSummary = Object.keys(items).map(orderItemKey => {
+            subTotal = Object.keys(items).map(orderItemKey => {
                 return items[orderItemKey];
             })
                 .reduce((sum, el) => {
@@ -30,7 +30,18 @@ class Orders extends Component {
                     return sum + itemPrice;
                 }, 0);
         }
-        return orderInvoiceSummary.toFixed(2);
+        const total = parseFloat(subTotal) + parseFloat(this.props.deliveryCharges);
+        const euroTotal = total*1.17;
+        orderInvoiceSummary = {
+            subtotal: subTotal.toFixed(2),
+            deliveryCharges: this.props.deliveryCharges.toFixed(2),
+            total: total.toFixed(2),
+            euroTotal: euroTotal.toFixed(2)
+        }
+        return orderInvoiceSummary;
+    }
+    orderContinueHandler = () => {
+        this.props.history.push('/checkout');
     }
 
     render() {
@@ -56,12 +67,11 @@ class Orders extends Component {
                             ></OrderItems>
                         </div>
                         <div className="col-md-4">
-                            <OrderInvoiceSummary subtotal={this.updateOrderInvoiceSummary(this.props.cartItems)}
-                                                 deliveryCharges={this.props.deliveryCharges}>
+                            <OrderInvoiceSummary
+                                orderInvoiceSummary={this.updateOrderInvoiceSummary(this.props.cartItems)}>
                             </OrderInvoiceSummary>
                             <div className="d-flex justify-content-center">
-                                <NavLink activeClassName="active" className="btn btn-white btn-outline-white"
-                                         to={"/checkout"}>Chechkout</NavLink>
+                                <Button btnType="btn btn-white btn-outline-white cart-btn-cls" clicked={this.orderContinueHandler}>Checkout</Button>
                             </div>
                         </div>
                     </div>
@@ -78,6 +88,7 @@ const mapStateToProps = state => {
         isAuthenticated: state.auth.token !== null,
         authRedirectPath: state.auth.authRedirectPath,
         cartItems: state.items.cartItems,
+        deliveryCharges: state.order.deliveryCharges,
     };
 };
 const mapDispatchToProps = dispatch => {

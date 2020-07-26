@@ -8,15 +8,19 @@ const orderInvoiceSummary = (props) => (
                     <tbody>
                     <tr>
                         <td>Subtotal</td>
-                        <td><p><span>{props.subtotal}</span></p></td>
+                        <td><p><span>${props.orderInvoiceSummary.subtotal}</span></p></td>
                     </tr>
                     <tr>
                         <td>Delivery</td>
-                        <td><span className="">{props.deliveryCharges}</span></td>
+                        <td><span className="">${props.orderInvoiceSummary.deliveryCharges}</span></td>
                     </tr>
                     <tr>
                         <td><h5>Total</h5></td>
-                        <td><h5>{props.subtotal+props.deliveryCharges}</h5></td>
+                        <td><h5><i className="fa fa-dollar" aria-hidden="true"></i> {props.orderInvoiceSummary.total}</h5></td>
+                    </tr>
+                    <tr>
+                        <td><h5>Euro Total</h5></td>
+                        <td><h5><i className="fa fa-eur" aria-hidden="true"></i> {props.orderInvoiceSummary.euroTotal}</h5></td>
                     </tr>
                     </tbody>
                 </table>

@@ -1,8 +1,6 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
 import './MenuItem.css';
 import Button from "../../../../components/UI/Button/Button";
-
 
 const menuItem = (props) => (
     <div className="col-md-6">
@@ -15,8 +13,8 @@ const menuItem = (props) => (
                 </div>
                 <div className="d-flex justify-content-center align-items-center">
                     <p>{props.description}</p>
-                    {/*<NavLink activeClassName="active" className="btn btn-white btn-outline-white" to={props.link} >Add to cart</NavLink>*/}
-                    <Button btnType="btn btn-white btn-outline-white cart-btn-cls" clicked={props.added}>Add to cart</Button>
+                    <Button btnType="btn btn-white btn-outline-white cart-btn-cls" clicked={props.added}>Add to
+                        cart</Button>
                 </div>
             </div>
         </div>

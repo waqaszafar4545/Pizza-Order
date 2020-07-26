@@ -32,11 +32,11 @@ const quantityIncrease = (state, action) => {
     const cartItems = state.cartItems;
     let cartItem = cartItems[action.itemId];
     cartItem.quantity = cartItem.quantity + 1;
+    cartItem.totalPrice = cartItem.price*cartItem.quantity;
     const updatedItem = {[action.itemId]: cartItem}
     const updatedItems = updateObject(state.cartItems, updatedItem);
     const updatedSt = {
-        cartItems: updatedItems,
-        totalPrice: state.totalPrice + action.price
+        cartItems: updatedItems
     }
     return updateObject(state, updatedSt);
 };
@@ -44,11 +44,11 @@ const quantityDecrease = (state, action) => {
     const cartItems = state.cartItems;
     let cartItem = cartItems[action.itemId];
     cartItem.quantity = cartItem.quantity - 1;
+    cartItem.totalPrice = cartItem.price*cartItem.quantity;
     const updatedItem = {[action.itemId]: cartItem}
     const updatedItems = updateObject(state.cartItems, updatedItem);
     const updatedSt = {
-        cartItems: updatedItems,
-        totalPrice: state.totalPrice + action.price
+        cartItems: updatedItems
     }
     return updateObject(state, updatedSt);
 };

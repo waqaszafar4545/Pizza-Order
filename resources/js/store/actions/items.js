@@ -8,6 +8,7 @@ export const addItemToCart = (item) => {
             id: item.id,
             name: item.name,
             price: item.price,
+            totalPrice: item.price,
             quantity: 1,
         }
     };
