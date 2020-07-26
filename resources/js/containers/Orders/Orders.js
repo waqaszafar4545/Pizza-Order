@@ -30,7 +30,7 @@ class Orders extends Component {
                     return sum + itemPrice;
                 }, 0);
         }
-        return orderInvoiceSummary;
+        return orderInvoiceSummary.toFixed(2);
     }
 
     render() {
@@ -57,8 +57,7 @@ class Orders extends Component {
                         </div>
                         <div className="col-md-4">
                             <OrderInvoiceSummary subtotal={this.updateOrderInvoiceSummary(this.props.cartItems)}
-                                                 delivery={this.updateOrderInvoiceSummary(this.props.cartItems)}
-                                                 delivery={2}>
+                                                 deliveryCharges={this.props.deliveryCharges}>
                             </OrderInvoiceSummary>
                             <div className="d-flex justify-content-center">
                                 <NavLink activeClassName="active" className="btn btn-white btn-outline-white"

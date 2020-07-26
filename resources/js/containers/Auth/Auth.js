@@ -6,7 +6,6 @@ import Input from '../../components/UI/Input/Input';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import './Auth.css';
 import * as actions from '../../store/actions/index';
-import SiteLogo from "../../assets/images/logo.png";
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
 
 class Auth extends Component {
@@ -163,23 +162,30 @@ class Auth extends Component {
             authRedirect = <Redirect to={this.props.authRedirectPath}/>
         }
         return (
-            <div className="signin-panel">
-                <div className="logo-img"><img src={SiteLogo} alt="Site Logo"/></div>
-                <div className="signin-sidebar auth-sidebar">
-                    {authRedirect}
-                    {errorMessage}
-                    <div className="signin-sidebar-body">
-                        <a href="" className="sidebar-logo mg-b-40">Remit<span>Scanner</span></a>
-                        <h1 className="signin-title">Welcome back!</h1>
-                        <h2 className="signin-subtitle">Please signin to continue.</h2>
-                        <div className="signin-form">
-                            <form onSubmit={this.submitHandler}>
-                                {form}
-                                <div className="form-group d-flex mg-b-0">
-                                    <button type="submit" className="btn btn-brand-01 btn-uppercase flex-fill">Sign In
-                                    </button>
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-6 container-fluid">
+                        <div className="signin-panel">
+                            <div className="signin-sidebar auth-sidebar">
+                                {authRedirect}
+                                {errorMessage}
+                                <div className="signin-sidebar-body">
+                                    <a href="" className="sidebar-logo mg-b-40">Pizza<span>Order</span></a>
+                                    <h1 className="signin-title">Welcome back!</h1>
+                                    <h2 className="signin-subtitle">Please signin to continue.</h2>
+                                    <div className="signin-form">
+                                        <form onSubmit={this.submitHandler}>
+                                            {form}
+                                            <div className="form-group d-flex mg-b-0">
+                                                <button type="submit"
+                                                        className="btn btn-brand-01 btn-uppercase flex-fill">Sign
+                                                    In
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>

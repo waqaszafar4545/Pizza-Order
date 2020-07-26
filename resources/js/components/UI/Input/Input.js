@@ -5,7 +5,7 @@ import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
 
 const input = (props) => {
     let inputElement = null;
-    const inputClasses = ["form-control"];
+    const inputClasses = ["form-control","input-text-cls"];
     let LabelClasses = null;
     if (props.labelClassName) {
         LabelClasses = [...props.labelClassName];

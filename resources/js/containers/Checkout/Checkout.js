@@ -6,7 +6,6 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import * as actions from '../../store/actions';
 import Auxiliary from "../../hoc/Auxiliary/Auxiliary";
 import CheckoutItems from './CheckoutItems/CheckoutItems';
-import MenuItems from "../Menu/MenuItems/MenuItems";
 import {NavLink} from "react-router-dom";
 
 class Checkout extends Component {
@@ -40,12 +39,9 @@ class Checkout extends Component {
                                 <p className="flip">
                                     <span className="deg1"></span><span className="deg2"></span><span
                                     className="deg3"></span></p>
-                                <p className="mt-5">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                             </div>
                         </div>
                     </div>
-
-
                     <div className="row">
                         <div className="col-md-8">
                             <CheckoutItems></CheckoutItems>
@@ -67,8 +63,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password) => dispatch(actions.auth(email, password)),
-        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/checkout'))
+        //onAuth: (email, password) => dispatch(actions.auth(email, password)),
+        //onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/checkout'))
     };
 };
 

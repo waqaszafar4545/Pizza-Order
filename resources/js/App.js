@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import Layout from './hoc/Layout/Layout';
 import PizzaLayout from './hoc/PizzaLayout/PizzaLayout';
 import Auth from './containers/Auth/Auth';
-import Dashboard from './containers/Dashboard/Dashboard';
 import Menu from './containers/Menu/Menu';
 import Orders from './containers/Orders/Orders';
 import Checkout from './containers/Checkout/Checkout';
@@ -22,20 +21,13 @@ class App extends React.Component {
             <Switch>
                 <Route path="/login" component={Auth}/>
                 <Route path="/logout" component={Logout}/>
-                <Route path="/dashboard" component={Dashboard}/>
-                {/*<Route path="/menu" component={Menu}/>*/}
-                <Route path="/orders" component={Orders}/>
-                <Route path="/checkout" component={Checkout}/>
+                <PrivateRoute path='/checkout' component={Checkout} />
+                <PrivateRoute path='/orders' component={Orders} />
                 <PrivateRoute path='/menu' component={Menu} />
                 <PrivateRoute path='/' component={Menu} />
-                {/*<Route path="/menu" render={() =>(*/}
-                {/*    this.props.isAuthenticated ? ( <Route component={Menu} />)*/}
-                {/*        : (<Route component={Dashboard} />)*/}
-                )} />
 
             </Switch>
         );
-
         return (
             <div>
                 <Layout>

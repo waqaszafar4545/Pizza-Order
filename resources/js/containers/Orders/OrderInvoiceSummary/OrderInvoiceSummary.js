@@ -12,11 +12,11 @@ const orderInvoiceSummary = (props) => (
                     </tr>
                     <tr>
                         <td>Delivery</td>
-                        <td><span className="">{props.delivery}</span></td>
+                        <td><span className="">{props.deliveryCharges}</span></td>
                     </tr>
                     <tr>
                         <td><h5>Total</h5></td>
-                        <td><h5>{props.total}</h5></td>
+                        <td><h5>{props.subtotal+props.deliveryCharges}</h5></td>
                     </tr>
                     </tbody>
                 </table>

@@ -71,7 +71,7 @@ class Menu extends Component {
         return (
             <Auxiliary>
                 <section>
-                    <Button btnType="Success" clicked={this.logoutHandler}>Logout</Button>
+                    {/*<Button btnType="Success" clicked={this.logoutHandler}>Logout</Button>*/}
                     <div className="container">
                         <div className="row justify-content-center mb-5 pb-3 mt-5 pt-5">
                             <div className="col-md-7 heading-section text-center">

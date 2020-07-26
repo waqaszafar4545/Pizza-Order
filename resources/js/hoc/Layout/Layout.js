@@ -15,7 +15,6 @@ class Layout extends React.Component {
     sideDrawerClosedHandler = () => {
         this.setState({showSideDrawer: false});
     }
-
     sideDrawerToggleHandler = () => {
         this.setState((prevState) => {
             return {showSideDrawer: !prevState.showSideDrawer};
@@ -31,16 +30,6 @@ class Layout extends React.Component {
     render() {
         return (
             <Auxiliary>
-                {/*<Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />*/}
-                {
-                    this.props.isAuthenticated ?
-                        <SideDrawer
-                            isAuth={this.props.isAuthenticated}
-                            open={this.state.showSideDrawer}
-                            closed={this.sideDrawerClosedHandler}/>
-                        : null
-                }
-
                 <main>
                     {this.props.children}
                 </main>
@@ -54,5 +43,4 @@ const mapStateToProps = state => {
         isAuthenticated: state.auth.token !== null
     };
 };
-
 export default connect(mapStateToProps)(Layout);

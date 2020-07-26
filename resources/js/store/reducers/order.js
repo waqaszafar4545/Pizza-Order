@@ -4,6 +4,7 @@ import {updateObject} from '../utility';
 const initialState = {
     orders: [],
     orderInvoiceSummary: null,
+    deliveryCharges: 2,
     loading: false,
     purchased: false
 };
