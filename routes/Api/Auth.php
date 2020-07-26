@@ -2,6 +2,7 @@
 
 namespace Route\Api;
 
+use Illuminate\Http\Request;
 use \Illuminate\Support\Facades\Route;
 
 class Auth
@@ -10,7 +11,7 @@ class Auth
     {
         Route::post('login', 'Auth\LoginController@login');
         Route::post('logout', 'Auth\LoginController@logout');
-        Route::middleware('auth:airlock')->get('/user', function (Request $request) {
+        Route::middleware('auth:sanctum')->post('/user', function (Request $request) {
             return $request->user();
         });
         Route::prefix('app')->middleware('api')->group(function () {

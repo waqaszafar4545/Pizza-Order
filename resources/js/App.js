@@ -10,7 +10,9 @@ import Orders from './containers/Orders/Orders';
 import Checkout from './containers/Checkout/Checkout';
 import PrivateRoute from './containers/PrivateRoute/PrivateRoute';
 import Logout from './containers/Auth/Logout/Logout';
+import My404Component from './containers/My404Component/My404Component';
 import * as actions from './store/actions/index';
+import Dashboard from "./containers/Dashboard/Dashboard";
 
 class App extends React.Component {
     componentDidMount() {
@@ -21,11 +23,13 @@ class App extends React.Component {
             <Switch>
                 <Route path="/login" component={Auth}/>
                 <Route path="/logout" component={Logout}/>
+                <Route path="/dashboard" component={Dashboard}/>
                 <PrivateRoute path='/checkout' component={Checkout} />
                 <PrivateRoute path='/orders' component={Orders} />
                 <PrivateRoute path='/menu' component={Menu} />
-                <PrivateRoute path='/' component={Menu} />
-
+                {/*<PrivateRoute path='/' component={Menu} />*/}
+                <Route path='/404' component={My404Component} />
+                <Redirect from='*' to='/404' />
             </Switch>
         );
         return (

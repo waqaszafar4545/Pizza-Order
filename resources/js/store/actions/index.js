@@ -2,7 +2,8 @@ export {
     auth,
     logout,
     setAuthRedirectPath,
-    authCheckState
+    authCheckState,
+    fetchUserOrders
 } from './auth';
 export {
     addItemToCart,

@@ -34,6 +34,7 @@ class Dashboard extends Component {
             <Auxiliary>
                 <h1>I am dashboard</h1>
                 <Button btnType="Success" clicked={this.dashboardHandler}>Dashboard</Button>
+                <Button btnType="Success" clicked={this.props.onUserOrders}>User Orders</Button>
                 <Button btnType="Success" clicked={this.loginHandler}>Login</Button>
                 <Button btnType="Success" clicked={this.logoutHandler}>Lgout</Button>
             </Auxiliary>
@@ -51,8 +52,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password) => dispatch(actions.auth(email, password)),
-        onSetAuthRedirectPath: () => dispatch(actions.setAuthRedirectPath('/dashboard'))
+        onUserOrders: () => dispatch(actions.fetchUserOrders())
     };
 };
 

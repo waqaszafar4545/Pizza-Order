@@ -4,9 +4,10 @@ import { updateObject } from '../utility';
 const initialState = {
     token: null,
     userId: null,
+    userOrders: null,
     error: null,
     loading: false,
-    authRedirectPath: '/'
+    authRedirectPath: '/menu'
 };
 
 const authStart = ( state, action ) => {
@@ -37,6 +38,10 @@ const setAuthRedirectPath = (state, action) => {
     console.log('setAuthRedirectPath reducer');
     return updateObject(state, { authRedirectPath: action.path })
 }
+const fetchUserOrders = (state, action) => {
+    console.log('setAuthRedirectPath reducer');
+    return updateObject(state, { userOrders: action.userOrders })
+}
 
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
@@ -45,6 +50,7 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.AUTH_FAIL: return authFail(state, action);
         case actionTypes.AUTH_LOGOUT: return authLogout(state, action);
         case actionTypes.SET_AUTH_REDIRECT_PATH: return setAuthRedirectPath(state,action);
+        case actionTypes.USER_ORDERS: return fetchUserOrders(state,action);
         default:
             return state;
     }

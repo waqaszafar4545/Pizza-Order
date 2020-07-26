@@ -16,6 +16,12 @@ export const authSuccess = (token, userId) => {
         userId: userId
     };
 };
+export const userOrders = (userOrders) => {
+    return {
+        type: actionTypes.USER_ORDERS,
+        userOrders: userOrders
+    };
+};
 
 export const authFail = (error) => {
     return {
@@ -28,7 +34,7 @@ export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
     localStorage.removeItem('userId');
-    let url = 'http://127.0.0.1:8000/api/logout';
+    let url = 'api/logout';
     axios.post(url)
         .then(response => {
             localStorage.removeItem('token');
@@ -41,6 +47,17 @@ export const logout = () => {
     return {
         type: actionTypes.AUTH_LOGOUT
     };
+};
+export const fetchUserOrders = () => {
+    let url = 'api/user';
+    axios.post(url)
+        .then(response => {
+            console.log("Hello Fetch User Orders", response);
+            dispatch(userOrders(response));
+        })
+        .catch(err => {
+            dispatch(authFail(err.response.data.error));
+        });
 };
 
 export const checkAuthTimeout = (expirationTime) => {
@@ -59,14 +76,13 @@ export const auth = (email, password, isSignup) => {
             password: password,
             returnSecureToken: true
         };
-        let url = 'http://127.0.0.1:8000/api/login';
-        let airLockUrl = 'http://127.0.0.1:8000/api/test_user';
+        let url = 'api/test_user';
         if (!isSignup) {
-            url = 'http://127.0.0.1:8000/api/login';
+            url = 'api/login';
         }
-        axios.get('/airlock/csrf-cookie')
+        axios.get('/sanctum/csrf-cookie')
             .then(response => {
-                console.log(response, "AirLock");
+                console.log(response, "sanctumUrl");
                 axios.post(url, authData)
                     .then(response => {
                         const expiresIn = response.data.expiresIn ? response.data.expiresIn : 3600;
@@ -88,7 +104,7 @@ export const auth = (email, password, isSignup) => {
 };
 
 export const setAuthRedirectPath = (path) => {
-    console.log("set this auth path",path);
+    console.log("set this auth path", path);
     return {
         type: actionTypes.SET_AUTH_REDIRECT_PATH,
         path: path
