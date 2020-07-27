@@ -79,6 +79,7 @@ const input = (props) => {
         <div className="form-group">
             {props.label ? <label className={LabelClasses ? LabelClasses.join(' ') : null}>{props.label}</label> : null}
             {inputElement}
+            <span className="text-danger validation-error d-none">This field is required.</span>
         </div>
     );
 

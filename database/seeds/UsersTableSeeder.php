@@ -13,9 +13,9 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $users = [
-            ['id' => 1, 'first_name' => 'Super', 'last_name' => 'Admin', 'phone_number' => '+923226983833', 'email' => 'syed.abbas@musharp.com', 'password' => bcrypt('12345678'), 'is_active' => 1, 'is_approved' => 1],
-            ['id' => 2, 'first_name' => 'Admin', 'last_name' => 'Test', 'phone_number' => '+923456983833', 'email' => 'syed.abbas+1@musharp.com', 'password' => bcrypt('12345678'), 'is_active' => 1, 'is_approved' => 1],
-            ['id' => 3, 'first_name' => 'User', 'last_name' => 'Test', 'phone_number' => '+923126983833', 'email' => 'syed.abbas+2@musharp.com', 'password' => bcrypt('12345678'), 'is_active' => 1, 'is_approved' => 1],
+            ['id' => 1, 'first_name' => 'Super', 'last_name' => 'Admin', 'phone_number' => '+923226983833', 'email' => 'abbasnaumani@gmail.com', 'password' => bcrypt('12345678'), 'is_active' => 1, 'is_approved' => 1],
+            ['id' => 2, 'first_name' => 'Admin', 'last_name' => 'Test', 'phone_number' => '+923456983833', 'email' => 'abbasnaumani+1@gmail.com', 'password' => bcrypt('12345678'), 'is_active' => 1, 'is_approved' => 1],
+            ['id' => 3, 'first_name' => 'User', 'last_name' => 'Test', 'phone_number' => '+923126983833', 'email' => 'abbasnaumani+2@gmail.com', 'password' => bcrypt('12345678'), 'is_active' => 1, 'is_approved' => 1],
         ];
         DB::table('users')->insert($users);
     }

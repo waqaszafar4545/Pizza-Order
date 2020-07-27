@@ -1,10 +1,11 @@
 <?php
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Route\Api\Auth;
 use Route\Api\Test;
 use Route\Api\User;
+use Route\Api\Product;
+use Route\Api\Order;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,5 @@ use Route\Api\User;
 Auth::register();
 Test::register();
 User::register();
+Product::register();
+Order::register();

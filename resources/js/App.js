@@ -27,9 +27,9 @@ class App extends React.Component {
                 <PrivateRoute path='/checkout' component={Checkout} />
                 <PrivateRoute path='/orders' component={Orders} />
                 <PrivateRoute path='/menu' component={Menu} />
-                {/*<PrivateRoute path='/' component={Menu} />*/}
-                <Route path='/404' component={My404Component} />
-                <Redirect from='*' to='/404' />
+                <PrivateRoute path='/' component={Menu} />
+                {/*<Route path='/404' component={My404Component} />*/}
+                {/*<Redirect from='*' to='/404' />*/}
             </Switch>
         );
         return (

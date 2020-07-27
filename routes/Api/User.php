@@ -9,7 +9,8 @@ class User
 {
     public static function register()
     {
-        Route::resource('users', 'UserController');
-        Route::post('/test_user', 'Test\TestController@testForm')->name('api.test');
+          Route::middleware('auth:sanctum')->post('/user', function (Request $request) {
+            return $request->user();
+        });
     }
 }

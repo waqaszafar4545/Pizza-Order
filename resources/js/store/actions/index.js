@@ -13,7 +13,7 @@ export {
     quantityDecrease
 } from './items';
 export {
-    purchase,
+    createOrder,
     purchaseInit,
     fetchOrders,
 } from './order';

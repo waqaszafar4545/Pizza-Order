@@ -6,11 +6,10 @@ export const orderInvoiceSummary = () => {
         type: actionTypes.ORDER_INVOICE_SUMMARY,
     };
 };
-export const purchaseSuccess = ( id, orderData ) => {
+export const purchaseSuccess = (  ) => {
     return {
         type: actionTypes.PURCHASE_SUCCESS,
-        orderId: id,
-        orderData: orderData
+        orderData: null
     };
 };
 
@@ -27,13 +26,14 @@ export const purchaseStart = () => {
     };
 };
 
-export const purchase = ( orderData ) => {
+export const createOrder = ( orderData ) => {
     return dispatch => {
         dispatch( purchaseStart() );
-        axios.post( '/orders.json', orderData )
+        axios.post( 'api/create_order', orderData )
             .then( response => {
                 console.log( response.data );
-                dispatch( purchaseSuccess( response.data.name, orderData ) );
+                window.location='/menu';
+                //dispatch( purchaseSuccess() );
             } )
             .catch( error => {
                 dispatch( purchaseFail( error ) );
