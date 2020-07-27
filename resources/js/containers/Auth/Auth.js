@@ -169,18 +169,27 @@ class Auth extends Component {
                             <div className="signin-sidebar auth-sidebar">
                                 {authRedirect}
                                 {errorMessage}
+                                <div className="container mb-5">
+                                    <div className="row justify-content-center mb-5 pb-3 mt-5 pt-5">
+                                        <div className="col-md-7 heading-section text-center">
+                                            <h2 className="mb-4">Login</h2>
+                                            <p className="flip">
+                                                <span className="deg1"></span><span className="deg2"></span><span
+                                                className="deg3"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div className="signin-sidebar-body">
-                                    <a href="" className="sidebar-logo mg-b-40">Pizza<span>Order</span></a>
-                                    <h1 className="signin-title">Welcome back!</h1>
-                                    <h2 className="signin-subtitle">Please signin to continue.</h2>
                                     <div className="signin-form">
                                         <form onSubmit={this.submitHandler}>
                                             {form}
-                                            <div className="form-group d-flex mg-b-0">
-                                                <button type="submit"
-                                                        className="btn btn-brand-01 btn-uppercase flex-fill">Sign
-                                                    In
-                                                </button>
+                                            <div className="form-group mg-b-20 text-center">
+                                                <h5>
+                                                    <button type="submit "
+                                                            className="btn btn-brand-01 btn-uppercase flex-fill main-btn-cls"> SIGN
+                                                        IN
+                                                    </button>
+                                                </h5>
                                             </div>
                                         </form>
                                     </div>

@@ -10,6 +10,7 @@ import OrderInvoiceSummary from './OrderInvoiceSummary/OrderInvoiceSummary';
 import {NavLink} from "react-router-dom";
 import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+
 class Orders extends Component {
     componentDidMount() {
         console.log(this.props.cartItems, "orders componentDidMount");
@@ -26,12 +27,15 @@ class Orders extends Component {
                 return items[orderItemKey];
             })
                 .reduce((sum, el) => {
-                    const itemPrice = el.quantity * el.price;
+                    let itemPrice = 0;
+                    if (el) {
+                        itemPrice = el.quantity * el.price;
+                    }
                     return sum + itemPrice;
                 }, 0);
         }
         const total = parseFloat(subTotal) + parseFloat(this.props.deliveryCharges);
-        const euroTotal = total*1.17;
+        const euroTotal = total * 1.17;
         orderInvoiceSummary = {
             subtotal: subTotal.toFixed(2),
             deliveryCharges: this.props.deliveryCharges.toFixed(2),
@@ -40,6 +44,7 @@ class Orders extends Component {
         }
         return orderInvoiceSummary;
     }
+
     orderContinueHandler = () => {
         this.props.history.push('/checkout');
     }
@@ -48,7 +53,7 @@ class Orders extends Component {
         return (
             <Auxiliary>
                 <section>
-                    <div className="container">
+                    <div className="container mb-5">
                         <div className="row justify-content-center mb-5 pb-3 mt-5 pt-5">
                             <div className="col-md-7 heading-section text-center">
                                 <h2 className="mb-4">Order</h2>
@@ -58,22 +63,29 @@ class Orders extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-8">
+                    <div className="row justify-content-center px-3">
+                        <div className="col-md-4 col-sm-3 justify-content-center">
+                            <div className=" d-flex pb-3"><h4> Cart Items</h4></div>
                             <OrderItems orderItems={this.props.cartItems}
                                         quantityIncreased={this.props.onQuantityIncrease}
                                         quantityDecreased={this.props.onQuantityDecrease}
                                         orderInvoiceSummary={this.props.cartItems}
                             ></OrderItems>
+
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-md-2">
+                            <div className="text-center pb-3"><h4> Invoice Summary </h4></div>
                             <OrderInvoiceSummary
                                 orderInvoiceSummary={this.updateOrderInvoiceSummary(this.props.cartItems)}>
                             </OrderInvoiceSummary>
-                            <div className="d-flex justify-content-center">
-                                <Button btnType="btn btn-white btn-outline-white cart-btn-cls" clicked={this.orderContinueHandler}>Checkout</Button>
+                            <div className="d-flex justify-content-center p-5 mb-5">
+                                <h5><Button btnType="main-btn-cls"
+                                            clicked={this.orderContinueHandler}>CHECKOUT
+                                </Button>
+                                </h5>
                             </div>
                         </div>
+
                     </div>
                 </section>
             </Auxiliary>

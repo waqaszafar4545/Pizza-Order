@@ -9,9 +9,9 @@ const initialState = {
 };
 
 const addItemToCart = (state, action) => {
-    let updatedItem = {[action.item.id]: action.item}
+    const itemId = parseInt(action.item.id);
+    let updatedItem = {[itemId]: action.item}
     const updatedItems = updateObject(state.cartItems, updatedItem);
-    console.log("addItemToCart", updatedItems);
     const updatedState = {
         cartItems: updatedItems,
         totalPrice: 0
@@ -20,19 +20,20 @@ const addItemToCart = (state, action) => {
 };
 
 const removeItemFromCart = (state, action) => {
-    const updatedItem = {[action.item.id]: state.item}
+    const itemId = parseInt(action.itemId);
+    let updatedItem = {[itemId]: null}
     const updatedItems = updateObject(state.cartItems, updatedItem);
-    const updatedSt = {
-        cartItems: updatedItems,
-        totalPrice: state.totalPrice + action.price
+    const updatedState = {
+        cartItems: updatedItems
     }
-    return updateObject(state, updatedSt);
+    console.log(updatedState, state)
+    return updateObject(state, updatedState);
 };
 const quantityIncrease = (state, action) => {
     const cartItems = state.cartItems;
     let cartItem = cartItems[action.itemId];
     cartItem.quantity = cartItem.quantity + 1;
-    cartItem.totalPrice = cartItem.price*cartItem.quantity;
+    cartItem.totalPrice = cartItem.price * cartItem.quantity;
     const updatedItem = {[action.itemId]: cartItem}
     const updatedItems = updateObject(state.cartItems, updatedItem);
     const updatedSt = {
@@ -44,7 +45,7 @@ const quantityDecrease = (state, action) => {
     const cartItems = state.cartItems;
     let cartItem = cartItems[action.itemId];
     cartItem.quantity = cartItem.quantity - 1;
-    cartItem.totalPrice = cartItem.price*cartItem.quantity;
+    cartItem.totalPrice = cartItem.price * cartItem.quantity;
     const updatedItem = {[action.itemId]: cartItem}
     const updatedItems = updateObject(state.cartItems, updatedItem);
     const updatedSt = {

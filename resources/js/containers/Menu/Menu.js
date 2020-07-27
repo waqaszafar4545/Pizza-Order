@@ -14,14 +14,14 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 class Menu extends Component {
     constructor(props) {
         super(props);
-        this.state = { hasError: false };
-        console.log("Jholy laal");
+        this.state = {hasError: false};
     }
 
     state = {
         purchasing: false,
         purchasable: false,
     }
+
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log("getSnapshotBeforeUpdate");
         return null;
@@ -30,6 +30,7 @@ class Menu extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         console.log("componentDidUpdate");
     }
+
     componentDidMount() {
         this.props.onInitItems();
         console.log("componentDidMount");
@@ -38,18 +39,22 @@ class Menu extends Component {
     componentWillUnmount() {
         console.log("componentWillUnmount");
     }
+
     static getDerivedStateFromError(error) {
         console.log("getDerivedStateFromError");
         // Update state so the next render will show the fallback UI.
-        return { hasError: true };
+        return {hasError: true};
     }
+
     componentDidCatch(error, info) {
         console.log("componentDidCatch");
     }
+
     updatePurchaseState(items) {
         const itemCount = items ? Object.keys(items).length : 0;
         return itemCount > 0;
     }
+
     purchaseHandler = () => {
         this.setState({purchasing: true});
     }
@@ -60,13 +65,24 @@ class Menu extends Component {
 
     purchaseContinueHandler = () => {
         this.props.onInitPurchase();
-        this.props.history.push('/orders');
+        this.props.history.push('/cart');
+    }
+
+    isSelected(itemId, cartItems) {
+        console.log(itemId, "I am mmmmmmm", cartItems)
+        if (cartItems && cartItems[itemId] && cartItems[itemId].id&&cartItems[itemId].id==itemId) {
+            console.log("ooooooooo", cartItems[itemId]);
+            return 1;
+        }
+        return 0;
     }
 
     render() {
         let menuItems = this.props.error ? <p>Menus can't be loaded!</p> : <Spinner/>;
         if (this.props.items) {
-            menuItems = <MenuItems itemAdded={this.props.onItemAdded} items={this.props.items}></MenuItems>
+            menuItems =
+                <MenuItems itemAdded={this.props.onItemAdded} itemRemoved={this.props.onItemRemoved} items={this.props.items} cartItems={this.props.cartItems}
+                           isSelectedId={this.isSelected}></MenuItems>
         }
         return (
             <Auxiliary>
@@ -86,11 +102,13 @@ class Menu extends Component {
                         <div className="row">
                             {menuItems}
                         </div>
-                        <div className="d-flex justify-content-center">
-                            <button
-                                disabled={!this.updatePurchaseState(this.props.cartItems)}
-                                onClick={this.purchaseContinueHandler}>ORDER NOW
-                            </button>
+                        <div className="d-flex justify-content-center p-5 mb-5 ">
+                            <h5>
+                                <button className="main-btn-cls"
+                                        disabled={!this.updatePurchaseState(this.props.cartItems)}
+                                        onClick={this.purchaseContinueHandler}>ORDER NOW
+                                </button>
+                            </h5>
                         </div>
                     </div>
                 </section>
@@ -110,6 +128,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onItemAdded: (item) => dispatch(actions.addItemToCart(item)),
+        onItemRemoved: (itemId) => dispatch(actions.removeItemFromCart(itemId)),
         onInitItems: () => dispatch(actions.initItems()),
         onInitPurchase: () => dispatch(actions.purchaseInit())
     };

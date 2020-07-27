@@ -4,12 +4,14 @@ import Auxiliary from "../../../hoc/Auxiliary/Auxiliary";
 
 const OrderItems = (props) => {
     let orderItemsHtml = null;
-    if (props.orderItems) {
-        orderItemsHtml = Object.keys(props.orderItems).map(orderItemKey => (
-            <OrderItem key={props.orderItems[orderItemKey].id}
-                       name={props.orderItems[orderItemKey].name} price={props.orderItems[orderItemKey].price}
-                       quantity={props.orderItems[orderItemKey].quantity}
-                       totalPrice={props.orderItems[orderItemKey].totalPrice}
+    let orderItems = props.orderItems;
+    if (orderItems) {
+         console.log(orderItems);
+        orderItemsHtml = Object.keys(orderItems).map(orderItemKey => ((orderItems[orderItemKey] !== null) &&
+            <OrderItem key={orderItems[orderItemKey].id}
+                       name={orderItems[orderItemKey].name} price={orderItems[orderItemKey].price}
+                       quantity={orderItems[orderItemKey].quantity}
+                       totalPrice={orderItems[orderItemKey].totalPrice}
                        increased={() => props.quantityIncreased(orderItemKey)}
                        decreased={() => props.quantityDecreased(orderItemKey)}>
             </OrderItem>
@@ -17,23 +19,21 @@ const OrderItems = (props) => {
     }
     return (
         <Auxiliary>
-            <div className="container-fluid">
-                <div className="row justify-content-center">
-                    <div className="d-flex ">
-                        <table className="table table-responsive">
-                            <thead>
-                            <tr>
-                                <td>Name</td>
-                                <td>Price</td>
-                                <td>Total Price</td>
-                                <td>Quantity</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {orderItemsHtml}
-                            </tbody>
-                        </table>
-                    </div>
+            <div className="row">
+                <div className="d-flex">
+                    <table className="table table-responsive">
+                        <thead>
+                        <tr>
+                            <td><h5>Name</h5></td>
+                            <td><h5>Price</h5></td>
+                            <td><h5>Total Price</h5></td>
+                            <td><h5>Quantity</h5></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {orderItemsHtml}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </Auxiliary>

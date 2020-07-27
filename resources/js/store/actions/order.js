@@ -32,8 +32,8 @@ export const createOrder = ( orderData ) => {
         axios.post( 'api/create_order', orderData )
             .then( response => {
                 console.log( response.data );
-                window.location='/menu';
-                //dispatch( purchaseSuccess() );
+              //  window.location='/menu';
+                dispatch( purchaseSuccess() );
             } )
             .catch( error => {
                 dispatch( purchaseFail( error ) );

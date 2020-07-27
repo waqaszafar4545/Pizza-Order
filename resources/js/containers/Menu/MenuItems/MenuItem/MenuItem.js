@@ -2,24 +2,27 @@ import React from 'react';
 import './MenuItem.css';
 import Button from "../../../../components/UI/Button/Button";
 
-const menuItem = (props) => (
-
-    <div className="col-md-6">
-        <div className="pricing-entry d-flex ">
-            <div className="img" style={{backgroundImage: "url(images/" + props.image_url + ")"}}></div>
-            <div className="desc pl-3">
-                <div className="d-flex text align-items-center">
+const menuItem = (props) => {
+    console.log(props,"propspropsprops");
+    let classes=["menu-item-cls"];
+    let btn= <Button btnType="btn btn-white btn-outline-white cart-btn-cls pt-5 pb-5">Add to
+        cart</Button>;
+    if(props.isSelected){
+        classes.push("selected");
+        btn= <Button btnType="btn btn-white btn-outline-white cart-btn-cls pt-5 pb-5" clicked={props.removed}>Remove From Cart</Button>;
+    }
+    return (
+        <div className="col-md-3 text-center pt-1 pb-1" onClick={props.isSelected?props.removed:props.added}>
+            <div className={classes.join(' ')}>
+                <p className="img img-cls mx-auto" style={{backgroundImage: "url(images/" + props.image_url + ")"}}></p>
+                <div className="text">
                     <h3><span>{props.name}</span></h3>
-                    <span className="price">${props.price.toFixed(2)}</span>
-                </div>
-                <div className="d-flex justify-content-center align-items-center">
                     <p>{props.description}</p>
-                    <Button btnType="btn btn-white btn-outline-white cart-btn-cls" clicked={props.added}>Add to
-                        cart</Button>
+                    <p><span className="price">${props.price.toFixed(2)}</span></p>
+                   {btn}
                 </div>
             </div>
         </div>
-    </div>
-);
-
+    );
+};
 export default menuItem;

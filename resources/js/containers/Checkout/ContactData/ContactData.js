@@ -144,7 +144,6 @@ class ContactData extends Component {
         let form = (
             <form onSubmit={this.orderHandler}>
                 {formElementsArray.map(formElement => (
-                    <Auxiliary>
                     <Input
                         key={formElement.id}
                         elementType={formElement.config.elementType}
@@ -155,18 +154,22 @@ class ContactData extends Component {
                         touched={formElement.config.touched}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)}/>
 
-                    </Auxiliary>
                 ))}
-                <Button btnType="btn btn-white btn-outline-white cart-btn-cls"
-                        clicked={this.orderHandler}>ORDER</Button>
+                <h5 className="text-center">
+                    <Button btnType="main-btn-cls"
+                            clicked={this.orderHandler}>ORDER</Button>
+                </h5>
             </form>
         );
         if (this.props.loading) {
             form = <Spinner/>;
         }
+        if (this.props.purchased) {
+            form = <h3>Thank You, Order Placed Successfully!</h3>;
+        }
         return (
-            <div>
-                <h4>Enter your Contact Data</h4>
+            <div className="text-center">
+                {/*<h4>Enter your Contact Data</h4>*/}
                 {form}
             </div>
         );
@@ -176,7 +179,8 @@ class ContactData extends Component {
 const mapStateToProps = state => {
     return {
         cartItems: state.items.cartItems,
-        loading: state.order.loading
+        loading: state.order.loading,
+        purchased: state.order.purchased
     }
 };
 

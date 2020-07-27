@@ -6,6 +6,7 @@ import './Layout.css';
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 import Button from "../../components/UI/Button/Button";
+import NavigationItems from "../../components/Navigation/NavigationItems/NavigationItems";
 
 class Layout extends React.Component {
     state = {
@@ -30,7 +31,8 @@ class Layout extends React.Component {
     render() {
         return (
             <Auxiliary>
-                <main>
+                <NavigationItems isAuthenticated={this.props.isAuthenticated}/>
+                <main className="pd-20">
                     {this.props.children}
                 </main>
             </Auxiliary>

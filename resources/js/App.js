@@ -25,7 +25,7 @@ class App extends React.Component {
                 <Route path="/logout" component={Logout}/>
                 <Route path="/dashboard" component={Dashboard}/>
                 <PrivateRoute path='/checkout' component={Checkout} />
-                <PrivateRoute path='/orders' component={Orders} />
+                <PrivateRoute path='/cart' component={Orders} />
                 <PrivateRoute path='/menu' component={Menu} />
                 <PrivateRoute path='/' component={Menu} />
                 {/*<Route path='/404' component={My404Component} />*/}

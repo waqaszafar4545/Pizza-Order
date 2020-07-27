@@ -14,10 +14,10 @@ export const addItemToCart = (item) => {
     };
 };
 
-export const removeItemFromCart = (item) => {
+export const removeItemFromCart = (itemId) => {
     return {
         type: actionTypes.REMOVE_ITEM_FROM_CART,
-        item: item
+        itemId: itemId
     };
 };
 export const quantityIncrease = (itemId) => {
